@@ -1,0 +1,54 @@
+server:
+  port: 80
+spring:
+  application:
+    name: mood-flux
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/koe?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123
+    type: org.apache.commons.dbcp.BasicDataSource
+    dbcp2:
+      max-wait-millis: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT x
+
+
+#    druid:
+#      url: jdbc:mysql://localhost:3306/koe?useUnicode=true&characterEncoding=UTF-8
+#      username: root
+#      password: 123
+#      filter:
+#        stat:
+#          enabled: false
+#      max-active: 60
+#      initial-size: 1
+#      max-wait: 30000
+#      pool-prepared-statements: true
+#      max-pool-prepared-statement-per-connection-size: 20
+#      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#      min-idle: 1
+#      time-between-eviction-runs-millis: 60000
+#      min-evictable-idle-time-millis: 300000
+#      validation-query: select 1 from dual
+#      test-while-idle: true
+#      test-on-borrow: false
+#      test-on-return: false
+#日志管理
+logging:
+  config: classpath:log/logback-spring.xml
+#mapper
+mapper:
+  mappers: com.mood.flux.utils.BaseMapper
+  not-empty: false
+  identity: MYSQL
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

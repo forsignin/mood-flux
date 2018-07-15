@@ -1,9 +1,14 @@
 package com.mood.flux;
 
+import com.mood.flux.utils.BaseMapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.mood.flux.mapper",markerInterface = BaseMapper.class)
+@EnableAutoConfiguration
 public class MoodFluxApplication {
 
 	public static void main(String[] args) {
